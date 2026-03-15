@@ -931,9 +931,57 @@ footer {
   .hero-visual { display: none; }
   nav .nav-links { display: none; }
 }
+
+/* ── Disclaimer Banner ─────────────────────────────────────── */
+.disclaimer-banner {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 999;
+  background: #1c1408;
+  border-top: 2px solid #d97706;
+  padding: 14px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.disclaimer-text {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: #fcd34d;
+  line-height: 1.6;
+  flex: 1;
+  min-width: 280px;
+}
+.disclaimer-text strong { color: #fbbf24; }
+.disclaimer-accept {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  padding: 8px 20px;
+  background: #d97706;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+.disclaimer-accept:hover { background: #f59e0b; }
+
 </style>
 </head>
 <body>
+
+<!-- DISCLAIMER BANNER -->
+<div class="disclaimer-banner" id="disclaimerBanner">
+  <div class="disclaimer-text">
+    <strong>⚠️ Not Financial Advice:</strong> North Prosperity platforms are for educational and simulation purposes only. All risk scores, projections, and simulations are based on historical data and mathematical models. Past performance does not guarantee future results. North Prosperity is not a registered financial advisor. Always consult a qualified financial professional before making investment decisions.
+  </div>
+  <button class="disclaimer-accept" onclick="acceptDisclaimer()">I Understand — Continue</button>
+</div>
+
 
 <!-- NAV -->
 <nav>
@@ -1232,7 +1280,7 @@ footer {
         <div class="price-name">DCA Pro</div>
         <div class="price-tagline">Reversion Alpha DCA Pro — full platform access</div>
         <div class="price-amount">
-          <div class="price-number"><span>$</span>69</div>
+          <div class="price-number"><span>$</span>59</div>
         </div>
         <div class="price-period">One-time purchase · Lifetime access</div>
         <ul class="price-features">
@@ -1250,7 +1298,7 @@ footer {
         <div class="price-name">Both Platforms</div>
         <div class="price-tagline">DCA Pro + Retirement Planner — complete suite</div>
         <div class="price-amount">
-          <div class="price-number"><span>$</span>119</div>
+          <div class="price-number"><span>$</span>99</div>
         </div>
         <div class="price-period">One-time purchase · Lifetime access · Save $19 vs buying separately</div>
         <ul class="price-features">
@@ -1269,7 +1317,7 @@ footer {
         <div class="price-name">Retirement Planner</div>
         <div class="price-tagline">North Prosperity Retirement Planner — full access</div>
         <div class="price-amount">
-          <div class="price-number"><span>$</span>69</div>
+          <div class="price-number"><span>$</span>59</div>
         </div>
         <div class="price-period">One-time purchase · Lifetime access</div>
         <ul class="price-features">
@@ -1359,7 +1407,7 @@ footer {
   </div>
   <div class="footer-bottom">
     <div class="footer-legal">© 2026 North Prosperity. All rights reserved.</div>
-    <div class="footer-legal">Not financial advice · For educational and simulation purposes only</div>
+    <div class="footer-legal">Not financial advice · For educational and simulation purposes only · <a href="mailto:support@northprosperity.com" style="color:var(--text3);text-decoration:none;">support@northprosperity.com</a></div>
   </div>
 </footer>
 
@@ -1512,6 +1560,18 @@ document.querySelectorAll('.product-card, .step, .price-card, .about-stat').forE
   el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
   observer.observe(el);
 });
+
+// Disclaimer banner
+function acceptDisclaimer() {
+  document.getElementById('disclaimerBanner').style.display = 'none';
+  localStorage.setItem('np_disclaimer_accepted', '1');
+}
+// Check if already accepted
+if (localStorage.getItem('np_disclaimer_accepted') === '1') {
+  const b = document.getElementById('disclaimerBanner');
+  if (b) b.style.display = 'none';
+}
+
 </script>
 </body>
 </html>
