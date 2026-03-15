@@ -1638,15 +1638,20 @@ document.querySelectorAll('.product-card, .step, .price-card, .about-stat').forE
   observer.observe(el);
 });
 
-// Disclaimer banner
+// Disclaimer banner — 30-day expiry
 function acceptDisclaimer() {
   document.getElementById('disclaimerBanner').style.display = 'none';
-  localStorage.setItem('np_disclaimer_accepted', '1');
+  const expiry = Date.now() + (30 * 24 * 60 * 60 * 1000); // 30 days in ms
+  localStorage.setItem('np_disclaimer_accepted', expiry.toString());
 }
-// Check if already accepted
-if (localStorage.getItem('np_disclaimer_accepted') === '1') {
+// Check if accepted and not expired
+const disclaimerExpiry = localStorage.getItem('np_disclaimer_accepted');
+if (disclaimerExpiry && Date.now() < parseInt(disclaimerExpiry)) {
   const b = document.getElementById('disclaimerBanner');
   if (b) b.style.display = 'none';
+} else {
+  // Expired or never accepted — clear it so banner shows
+  localStorage.removeItem('np_disclaimer_accepted');
 }
 
 </script>
