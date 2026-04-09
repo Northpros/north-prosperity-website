@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GSBBFBWC9S"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-GSBBFBWC9S');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>North Prosperity — Quantitative Investment Tools</title>
+<meta name="description" content="Professional investment simulation and retirement planning tools. Reversion Alpha and the North Prosperity Retirement Planner — built for disciplined, data-driven investors.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:wght@300;400;500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#04040f;--bg2:#07071a;--bg3:#0d0d24;--card:#0a0a20;--border:#1a1a3a;--border2:#2a2a50;
+  --gold:#c9a84c;--gold2:#e8c76a;--accent:#5b7fff;--accent2:#7b9fff;--green:#22c55e;--green2:#16a34a;
+  --text:#e8e8f8;--text2:#9090b8;--text3:#50507a;--purple:#a78bfa;
+  --font-h:'Playfair Display',Georgia,serif;--font-b:'Lato',sans-serif;--font-m:'DM Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--font-b);font-size:16px;line-height:1.7;overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(91,127,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(91,127,255,0.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 5%;height:72px;display:flex;align-items:center;justify-content:space-between;background:rgba(4,4,15,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-logo{display:flex;align-items:baseline;gap:10px;}
+.nav-logo-np{font-family:var(--font-h);font-size:20px;font-weight:700;color:var(--gold);letter-spacing:0.5px;}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none;}
+.nav-links a{font-family:var(--font-m);font-size:12px;color:var(--text2);letter-spacing:0.5px;transition:color 0.2s;}
+.nav-links a:hover{color:var(--accent2);}
+.nav-cta{font-family:var(--font-m);font-size:12px;padding:8px 20px;background:var(--green);color:#fff;border-radius:4px;letter-spacing:0.5px;transition:background 0.2s,transform 0.15s;}
+.nav-cta:hover{background:var(--green2);transform:translateY(-1px);}
+section{position:relative;z-index:1;}
+.container{max-width:1200px;margin:0 auto;padding:0 5%;}
+#home{min-height:100vh;display:flex;align-items:center;padding-top:72px;overflow:hidden;}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;padding:100px 5% 80px;max-width:1200px;margin:0 auto;width:100%;}
+.hero-eyebrow{font-family:var(--font-m);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+.hero-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--gold);}
+.hero-h1{font-family:var(--font-h);font-size:clamp(42px,5vw,72px);font-weight:900;line-height:1.05;color:var(--text);margin-bottom:28px;}
+.hero-h1 span{color:var(--gold);}
+.hero-sub{font-size:18px;color:var(--text2);line-height:1.7;margin-bottom:20px;max-width:480px;}
+.free-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);border-radius:6px;padding:8px 16px;font-family:var(--font-m);font-size:12px;color:var(--green);margin-bottom:32px;letter-spacing:0.3px;}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;}
+.btn-primary{font-family:var(--font-m);font-size:13px;padding:14px 28px;background:var(--green);color:#fff;border-radius:4px;font-weight:500;letter-spacing:0.3px;transition:all 0.2s;border:none;cursor:pointer;}
+.btn-primary:hover{background:var(--green2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(34,197,94,0.25);}
+.btn-secondary{font-family:var(--font-m);font-size:13px;padding:14px 28px;background:transparent;color:var(--text2);border-radius:4px;font-weight:400;letter-spacing:0.3px;transition:all 0.2s;border:1px solid var(--border2);cursor:pointer;}
+.btn-secondary:hover{color:var(--text);border-color:var(--accent);}
+.hero-visual{position:relative;}
+.mock-terminal{background:var(--bg3);border:1px solid var(--border2);border-radius:12px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,0.6),0 0 0 1px rgba(91,127,255,0.1);}
+.terminal-header{background:var(--card);padding:12px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border);}
+.dot{width:10px;height:10px;border-radius:50%;}
+.dot-r{background:#ff5f57;}.dot-y{background:#ffbd2e;}.dot-g{background:#28ca41;}
+.terminal-title{font-family:var(--font-m);font-size:11px;color:var(--text3);margin-left:8px;}
+.terminal-body{padding:24px;}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:20px;}
+.stat-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px;text-align:center;}
+.stat-label{font-family:var(--font-m);font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.stat-val{font-family:var(--font-m);font-size:18px;font-weight:500;}
+.val-gold{color:var(--gold);}.val-green{color:var(--green);}.val-accent{color:var(--accent2);}
+.risk-row{display:flex;align-items:center;gap:12px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-bottom:10px;}
+.risk-ticker{font-family:var(--font-m);font-size:13px;font-weight:500;color:var(--accent2);width:48px;}
+.risk-bar-track{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden;}
+.risk-bar-fill{height:100%;border-radius:3px;}
+.fill-green{background:var(--green);}.fill-gold{background:var(--gold);}.fill-blue{background:var(--accent);}
+.risk-score{font-family:var(--font-m);font-size:12px;width:40px;text-align:right;}
+.risk-badge{font-family:var(--font-m);font-size:9px;padding:2px 8px;border-radius:3px;letter-spacing:0.5px;width:64px;text-align:center;}
+.badge-buy{background:rgba(34,197,94,0.15);color:var(--green);}
+.badge-hold{background:rgba(91,127,255,0.15);color:var(--accent2);}
+.badge-caution{background:rgba(201,168,76,0.15);color:var(--gold);}
+.divider{border:none;height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent);margin:0;}
+.section-eyebrow{font-family:var(--font-m);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.section-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--gold);}
+.section-h2{font-family:var(--font-h);font-size:clamp(26px,3.2vw,42px);font-weight:700;line-height:1.15;color:var(--text);margin-bottom:16px;}
+.section-sub{font-size:15px;color:var(--text2);max-width:600px;line-height:1.7;}
+.section-header{margin-bottom:48px;}
+#products{padding:120px 0;}
+.product-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+.product-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:48px 40px;position:relative;overflow:hidden;transition:border-color 0.3s,transform 0.3s;}
+.product-card:hover{border-color:var(--border2);transform:translateY(-4px);}
+.product-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.card-dca::before{background:linear-gradient(90deg,var(--accent),var(--purple));}
+.card-retire::before{background:linear-gradient(90deg,var(--gold),var(--gold2));}
+.product-tag{font-family:var(--font-m);font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:3px;margin-bottom:24px;display:inline-block;}
+.tag-dca{background:rgba(91,127,255,0.15);color:var(--accent2);}
+.tag-retire{background:rgba(201,168,76,0.15);color:var(--gold);}
+.product-name{font-family:var(--font-h);font-size:28px;font-weight:700;color:var(--text);margin-bottom:8px;line-height:1.2;}
+.product-desc{font-size:15px;color:var(--text2);margin-bottom:32px;line-height:1.7;}
+.feature-list{list-style:none;margin-bottom:36px;display:flex;flex-direction:column;gap:10px;}
+.feature-list li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--text2);}
+.feature-list li::before{content:'→';font-family:var(--font-m);font-size:12px;color:var(--accent);flex-shrink:0;margin-top:2px;}
+.card-retire .feature-list li::before{color:var(--gold);}
+.product-cta{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-m);font-size:13px;padding:12px 24px;border-radius:4px;transition:all 0.2s;cursor:pointer;border:none;background:var(--green);color:#fff;}
+.product-cta:hover{background:var(--green2);transform:translateY(-1px);}
+#how{padding:120px 0;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;margin-top:64px;}
+.step{position:relative;}
+.step-num{font-family:var(--font-m);font-size:48px;font-weight:300;color:var(--border2);line-height:1;margin-bottom:16px;}
+.step-title{font-family:var(--font-h);font-size:18px;font-weight:700;color:var(--text);margin-bottom:10px;}
+.step-desc{font-size:14px;color:var(--text2);line-height:1.7;}
+.step-connector{position:absolute;top:24px;right:-24px;width:48px;height:1px;background:linear-gradient(90deg,var(--border2),transparent);}
+#dca{padding:120px 0;}
+.feature-showcase{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;margin-top:64px;}
+.feature-tabs{display:flex;flex-direction:column;gap:4px;}
+.feat-tab{padding:20px 24px;border-radius:10px;border:1px solid transparent;cursor:pointer;transition:all 0.2s;background:transparent;}
+.feat-tab:hover,.feat-tab.active{background:var(--card);border-color:var(--border);}
+.feat-tab.active{border-color:var(--accent);}
+.feat-tab-title{font-family:var(--font-h);font-size:17px;font-weight:700;color:var(--text);margin-bottom:6px;}
+.feat-tab.active .feat-tab-title{color:var(--accent2);}
+.feat-tab-desc{font-size:14px;color:var(--text2);line-height:1.6;}
+.feature-panel{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:40px;position:sticky;top:100px;}
+.panel-label{font-family:var(--font-m);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
+.panel-title{font-family:var(--font-h);font-size:24px;font-weight:700;color:var(--text);margin-bottom:12px;}
+.panel-body{font-size:15px;color:var(--text2);line-height:1.7;margin-bottom:24px;}
+.data-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-family:var(--font-m);font-size:13px;}
+.data-row:last-child{border-bottom:none;}
+.data-key{color:var(--text2);}
+.data-val{color:var(--text);font-weight:500;}
+.data-val.pos{color:var(--green);}
+.data-val.acc{color:var(--accent2);}
+#retire{padding:120px 0;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.retire-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;margin-top:64px;}
+.retire-tabs{display:flex;flex-direction:column;gap:4px;}
+.ret-tab{padding:20px 24px;border-radius:10px;border:1px solid transparent;cursor:pointer;transition:all 0.2s;background:transparent;}
+.ret-tab:hover,.ret-tab.active{background:var(--card);border-color:var(--border);}
+.ret-tab.active{border-color:var(--gold);}
+.ret-tab-title{font-family:var(--font-h);font-size:17px;font-weight:700;color:var(--text);margin-bottom:6px;}
+.ret-tab.active .ret-tab-title{color:var(--gold);}
+.ret-tab-desc{font-size:14px;color:var(--text2);line-height:1.6;}
+.retire-panel{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:40px;position:sticky;top:100px;}
+.retire-panel .panel-label{color:var(--gold);}
+.income-bar-row{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.income-label{font-family:var(--font-m);font-size:11px;color:var(--text2);width:80px;flex-shrink:0;}
+.income-track{flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden;}
+.income-fill{height:100%;border-radius:4px;}
+.fill-acc{background:var(--accent);}.fill-gld{background:var(--gold);}.fill-grn{background:var(--green);}.fill-pur{background:var(--purple);}
+.income-amt{font-family:var(--font-m);font-size:12px;color:var(--text);width:60px;text-align:right;}
+#about{padding:120px 0;background:var(--bg2);border-top:1px solid var(--border);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.about-body{font-size:16px;color:var(--text2);line-height:1.8;margin-bottom:20px;}
+.about-body strong{color:var(--text);}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.about-stat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px 24px;text-align:center;}
+.about-stat-num{font-family:var(--font-m);font-size:36px;font-weight:300;color:var(--gold);line-height:1;margin-bottom:8px;}
+.about-stat-label{font-size:13px;color:var(--text2);}
+.video-embed{margin:48px auto 0;max-width:800px;border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 24px 64px rgba(0,0,0,0.4);position:relative;padding-bottom:56.25%;height:0;}
+.video-embed iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
+footer{background:var(--bg);border-top:1px solid var(--border);padding:60px 5% 40px;position:relative;z-index:1;}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;}
+.footer-brand-name{font-family:var(--font-h);font-size:22px;font-weight:700;color:var(--gold);margin-bottom:12px;}
+.footer-brand-desc{font-size:14px;color:var(--text3);line-height:1.7;max-width:260px;}
+.footer-col-title{font-family:var(--font-m);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:16px;}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.footer-links a{font-size:14px;color:var(--text3);transition:color 0.2s;}
+.footer-links a:hover{color:var(--text2);}
+.footer-bottom{max-width:1200px;margin:0 auto;padding-top:24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-legal{font-family:var(--font-m);font-size:11px;color:var(--text3);}
+.disclaimer-banner{position:fixed;bottom:0;left:0;right:0;z-index:999;background:#1c1408;border-top:2px solid #d97706;padding:14px 5%;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.disclaimer-text{font-family:'DM Mono',monospace;font-size:11px;color:#fcd34d;line-height:1.6;flex:1;min-width:280px;}
+.disclaimer-text strong{color:#fbbf24;}
+.disclaimer-accept{font-family:'DM Mono',monospace;font-size:11px;padding:8px 20px;background:#d97706;color:#fff;border:none;border-radius:4px;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background 0.2s;}
+.disclaimer-accept:hover{background:#f59e0b;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+@keyframes glow{0%,100%{opacity:0.4;}50%{opacity:0.8;}}
+.fade-up{animation:fadeUp 0.7s ease both;}
+.delay-1{animation-delay:0.1s;}
+.delay-2{animation-delay:0.2s;}
+.delay-3{animation-delay:0.3s;}
+.hero-glow{position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(91,127,255,0.12) 0%,transparent 70%);border-radius:50%;top:50%;right:0;transform:translateY(-50%);pointer-events:none;animation:glow 4s ease-in-out infinite;}
+.hero-glow-2{position:absolute;width:400px;height:400px;background:radial-gradient(circle,rgba(201,168,76,0.08) 0%,transparent 70%);border-radius:50%;bottom:10%;left:5%;pointer-events:none;animation:glow 6s ease-in-out infinite 2s;}
+@media(max-width:900px){
+  .hero-inner,.product-grid,.feature-showcase,.retire-grid,.about-grid{grid-template-columns:1fr;gap:40px;}
+  .steps-grid{grid-template-columns:1fr 1fr;}
+  .footer-inner{grid-template-columns:1fr 1fr;}
+  .hero-visual{display:none;}
+  nav .nav-links{display:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="disclaimer-banner" id="disclaimerBanner">
+  <div class="disclaimer-text"><strong>⚠️ Not Financial Advice:</strong> North Prosperity platforms are for educational and simulation purposes only. All risk scores, projections, and simulations are based on historical data and mathematical models. Past performance does not guarantee future results. North Prosperity is not a registered financial advisor. Always consult a qualified financial professional before making investment decisions.</div>
+  <button class="disclaimer-accept" onclick="acceptDisclaimer()">I Understand — Continue</button>
+</div>
+
+<nav>
+  <div class="nav-logo"><span class="nav-logo-np">North Prosperity</span></div>
+  <ul class="nav-links">
+    <li><a href="#products">Products</a></li>
+    <li><a href="#dca">Reversion Alpha</a></li>
+    <li><a href="#retire">Retirement Planner</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+  <a href="#products" class="nav-cta">Get Free Access →</a>
+</nav>
+
+<section id="home">
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow fade-up">Quantitative Investment Tools</div>
+      <h1 class="hero-h1 fade-up delay-1">Invest with<br><span>precision.</span><br>Plan with<br>confidence.</h1>
+      <p class="hero-sub fade-up delay-2">Two professional-grade platforms that replace guesswork and emotion with data-driven systems — for accumulation and retirement alike.</p>
+      <div class="free-badge fade-up delay-2">Currently free — get access below, no payment required</div>
+      <div class="hero-actions fade-up delay-3">
+        <a href="#products" class="btn-primary">Get Free Access →</a>
+        <a href="#products" class="btn-secondary">Explore Tools</a>
+      </div>
+    </div>
+    <div class="hero-visual fade-up delay-2">
+      <div class="mock-terminal">
+        <div class="terminal-header">
+          <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+          <span class="terminal-title">Reversion Alpha — Live</span>
+        </div>
+        <div class="terminal-body">
+          <div class="stat-grid">
+            <div class="stat-card"><div class="stat-label">Portfolio</div><div class="stat-val val-green">$284,190</div></div>
+            <div class="stat-card"><div class="stat-label">Invested</div><div class="stat-val val-accent">$120,000</div></div>
+            <div class="stat-card"><div class="stat-label">CAGR</div><div class="stat-val val-gold">+18.4%</div></div>
+          </div>
+          <div class="risk-row"><div class="risk-ticker">SPY</div><div class="risk-bar-track"><div class="risk-bar-fill fill-green" style="width:34%"></div></div><div class="risk-score" style="color:var(--green)">0.34</div><div class="risk-badge badge-buy">Buy 2x</div></div>
+          <div class="risk-row"><div class="risk-ticker">NVDA</div><div class="risk-bar-track"><div class="risk-bar-fill fill-blue" style="width:52%"></div></div><div class="risk-score" style="color:var(--accent2)">0.52</div><div class="risk-badge badge-hold">Hold</div></div>
+          <div class="risk-row"><div class="risk-ticker">BTC</div><div class="risk-bar-track"><div class="risk-bar-fill fill-green" style="width:28%"></div></div><div class="risk-score" style="color:var(--green)">0.28</div><div class="risk-badge badge-buy">Buy 3x</div></div>
+          <div class="risk-row"><div class="risk-ticker">TSLA</div><div class="risk-bar-track"><div class="risk-bar-fill fill-gold" style="width:71%"></div></div><div class="risk-score" style="color:var(--gold)">0.71</div><div class="risk-badge badge-caution">Reduce</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="products">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Our Platforms</div>
+      <h2 class="section-h2">Two tools.<br>One financial future.</h2>
+      <p class="section-sub">Built by investors, for investors who want a systematic edge — whether you're still accumulating or already living off your portfolio. Both completely free — launch directly, no account required.</p>
+    </div>
+    <div class="product-grid">
+
+      <div class="product-card card-dca" style="display:flex;flex-direction:column;">
+        <div class="product-tag tag-dca">DCA Simulator</div>
+        <h3 class="product-name">Reversion Alpha</h3>
+        <p style="font-family:var(--font-m);font-size:12px;color:var(--accent2);letter-spacing:1px;margin-bottom:16px;">Build & Accumulate</p>
+        <p class="product-desc">A quantitative DCA simulator that uses a proprietary risk score to tell you not just when to buy — but how much. For any stock, ETF, or crypto.</p>
+        <ul class="feature-list">
+          <li>500-day geometric MA risk model, calibrated to real market extremes</li>
+          <li>Precision DCA with linear or exponential buy multipliers</li>
+          <li>Direction-aware Take Profit exit engine</li>
+          <li>LEAP options and covered call strategy simulation</li>
+          <li>Live data from Yahoo Finance and Binance</li>
+          <li>Portfolio Tracker with live risk scores across all holdings</li>
+          <li>USD and CAD currency support including TSX tickers</li>
+        </ul>
+        <!-- OVERVIEW LINK DISABLED — new video coming -->
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <a href="https://northpros-reversion-alpha.vercel.app" target="_blank" class="product-cta" style="justify-content:center;">🚀 Launch Reversion Alpha</a>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+            <a href="https://northprosperity.com/ReversionAlpha_UserGuide.pdf" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:10px;background:transparent;color:var(--text2);border-radius:4px;font-family:var(--font-m);font-size:12px;border:1px solid var(--border2);transition:all 0.2s;text-decoration:none;" onmouseover="this.style.borderColor='#22c55e';this.style.color='#22c55e'" onmouseout="this.style.borderColor='var(--border2)';this.style.color='var(--text2)'">📄 User Guide</a>
+            <a href="https://youtu.be/ayKaGKMhRhk" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:10px;background:transparent;color:var(--text2);border-radius:4px;font-family:var(--font-m);font-size:12px;border:1px solid var(--border2);transition:all 0.2s;text-decoration:none;" onmouseover="this.style.borderColor='#22c55e';this.style.color='#22c55e'" onmouseout="this.style.borderColor='var(--border2)';this.style.color='var(--text2)'">🎬 Tutorial Video</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card card-retire" style="display:flex;flex-direction:column;">
+        <div class="product-tag tag-retire">Retirement Planner</div>
+        <h3 class="product-name">Retirement<br>Planner</h3>
+        <p style="font-family:var(--font-m);font-size:12px;color:var(--gold);letter-spacing:1px;margin-bottom:8px;">Plan & Preserve</p>
+        <p style="font-family:var(--font-m);font-size:11px;color:var(--gold);letter-spacing:0.5px;margin-bottom:16px;">🌍 USD · CAD · GBP · EUR · AUD · CHF · JPY · HKD</p>
+        <p class="product-desc">A complete year-by-year retirement income and portfolio projection tool. Model every income source, every asset, every withdrawal — in one place.</p>
+        <ul class="feature-list">
+          <li>Project pension, CPP/OAS, Social Security, and registered accounts</li>
+          <li>3-phase CAGR growth model for realistic long-term projections</li>
+          <li>Per-source tax rate inputs — estimate net vs gross income by source</li>
+          <li>Supports 8 currencies — USD, CAD, GBP, EUR, AUD, CHF, JPY, HKD</li>
+          <li>7 chart types including income stacked, withdrawal plan, and net worth</li>
+          <li>Big Ticket Calculator for major purchase planning</li>
+          <li>Export and import plans — works on any device, fully private</li>
+        </ul>
+        <p style="font-family:var(--font-m);font-size:12px;color:var(--text3);margin-bottom:12px;margin-top:auto;">New here? <a href="https://youtu.be/ofmjMHz6YA0" target="_blank" style="color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold);">Watch the 2-min overview first →</a></p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <a href="https://north-prosperity-retirement-planner.vercel.app" target="_blank" class="product-cta" style="justify-content:center;">🚀 Launch Retirement Planner</a>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+            <a href="https://northprosperity.com/RetirementPlanner_UserGuide.pdf" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:10px;background:transparent;color:var(--text2);border-radius:4px;font-family:var(--font-m);font-size:12px;border:1px solid var(--border2);transition:all 0.2s;text-decoration:none;" onmouseover="this.style.borderColor='#22c55e';this.style.color='#22c55e'" onmouseout="this.style.borderColor='var(--border2)';this.style.color='var(--text2)'">📄 User Guide</a>
+            <a href="https://youtu.be/VIXhug44eik" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:10px;background:transparent;color:var(--text2);border-radius:4px;font-family:var(--font-m);font-size:12px;border:1px solid var(--border2);transition:all 0.2s;text-decoration:none;" onmouseover="this.style.borderColor='#22c55e';this.style.color='#22c55e'" onmouseout="this.style.borderColor='var(--border2)';this.style.color='var(--text2)'">🎬 Tutorial Video</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">How It Works</div>
+      <h2 class="section-h2">From data to decision<br>in minutes.</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step"><div class="step-num">01</div><div class="step-title">Enter your ticker</div><p class="step-desc">Type any stock, ETF, or crypto symbol. Live historical price data loads automatically — no API keys, no setup.</p><div class="step-connector"></div></div>
+      <div class="step"><div class="step-num">02</div><div class="step-title">Read the risk score</div><p class="step-desc">The platform instantly calculates where the asset sits relative to its 500-day trend. A score near zero means deep value. Near one means stretched.</p><div class="step-connector"></div></div>
+      <div class="step"><div class="step-num">03</div><div class="step-title">Set your strategy</div><p class="step-desc">Choose your risk band, buy strategy, and base amount. The platform calculates exactly how much to invest at every scheduled purchase date.</p><div class="step-connector"></div></div>
+      <div class="step"><div class="step-num">04</div><div class="step-title">Execute with confidence</div><p class="step-desc">Review the simulated trade log, portfolio growth, and CAGR against the lump sum benchmark. Then follow the plan — without emotion.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="dca">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Reversion Alpha</div>
+      <h2 class="section-h2">Buy more when it matters.<br>Hold back when it doesn't.</h2>
+      <p class="section-sub">The risk score model automatically concentrates your buying power at the moments of greatest opportunity — the deep dips — while conserving capital when valuations are stretched.</p>
+    </div>
+    <div class="feature-showcase">
+      <div class="feature-tabs">
+        <div class="feat-tab active" onclick="setFeature('risk',this)"><div class="feat-tab-title">⚡ The Risk Score Model</div><div class="feat-tab-desc">A 500-day geometric moving average measures how cheap or expensive any asset is relative to its own long-term trend — from 0.0 (extreme buy) to 1.0 (extreme caution).</div></div>
+        <div class="feat-tab" onclick="setFeature('precision',this)"><div class="feat-tab-title">🎯 Precision DCA</div><div class="feat-tab-desc">Linear or exponential multipliers automatically scale your buy amount based on the risk score. A $1,000 base becomes $3,000 in a moderate dip and $5,000 at the extreme.</div></div>
+        <div class="feat-tab" onclick="setFeature('advanced',this)"><div class="feat-tab-title">📊 Advanced Strategies</div><div class="feat-tab-desc">Direction-aware Take Profit engine, LEAP options at the deepest dips for leveraged exposure, and covered calls that generate income when your holdings are overvalued.</div></div>
+        <div class="feat-tab" onclick="setFeature('tracker',this)"><div class="feat-tab-title">💼 Portfolio Tracker</div><div class="feat-tab-desc">Monitor all your real holdings simultaneously. Live prices, gains, risk scores, and Buy/Hold/Reduce signals across every position — including a planned target allocation tool.</div></div>
+      </div>
+      <div class="feature-panel" id="feat-panel">
+        <div class="panel-label">Risk Score Model</div>
+        <div class="panel-title">Where is the asset relative to its trend?</div>
+        <div class="panel-body">The 500-day geometric MA stays elevated through bear markets, correctly identifying historic buying opportunities like Bitcoin at $16,000 in November 2022 (risk score: 0.197).</div>
+        <div class="data-row"><span class="data-key">Nov 2022 BTC</span><span class="data-val pos">0.197 — Extreme Buy ✓</span></div>
+        <div class="data-row"><span class="data-key">Jun 2022 BTC</span><span class="data-val pos">0.155 — Deep Buy ✓</span></div>
+        <div class="data-row"><span class="data-key">Apr 2023 BTC</span><span class="data-val acc">0.532 — Above Band</span></div>
+        <div class="data-row"><span class="data-key">Current SPY</span><span class="data-val acc">0.34 — Accumulate</span></div>
+      </div>
+    </div>
+    <!-- VIDEO DISABLED — platform updated, new video coming
+    <div class="video-embed">
+      <iframe src="https://www.youtube.com/embed/vFqJp2ehIYM" title="Reversion Alpha — Quantitative DCA Simulator | North Prosperity" allowfullscreen loading="lazy"></iframe>
+    </div>
+    -->
+  </div>
+</section>
+
+<section id="retire">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Retirement Planner</div>
+      <h2 class="section-h2">Your complete retirement<br>picture — year by year.</h2>
+      <p class="section-sub">Model every income source, every asset, every withdrawal across a 30-year horizon. Supports 8 major currencies — USD, CAD, GBP, EUR, AUD, CHF, JPY, and HKD.</p>
+    </div>
+    <div class="retire-grid">
+      <div class="retire-tabs">
+        <div class="ret-tab active" onclick="setRetire('income',this)"><div class="ret-tab-title">⚙️ Planning & Income</div><div class="ret-tab-desc">Set your start age, inflation rate, and projection years. Enter pension, CPP/OAS, Social Security, and registered investment accounts — all on one screen.</div></div>
+        <div class="ret-tab" onclick="setRetire('divest',this)"><div class="ret-tab-title">💸 Assets to Divest</div><div class="ret-tab-desc">Enter stocks and investments you'll sell through retirement. The 3-phase CAGR model calculates exactly how many shares to sell each year to sustain your income.</div></div>
+        <div class="ret-tab" onclick="setRetire('project',this)"><div class="ret-tab-title">📊 Projections & Charts</div><div class="ret-tab-desc">Year-by-year table showing total income, portfolio value, and breakdown by source. Seven chart types including portfolio value, income stacked, and withdrawal schedules.</div></div>
+        <div class="ret-tab" onclick="setRetire('tools',this)"><div class="ret-tab-title">🎯 Additional Tools</div><div class="ret-tab-desc">Big Ticket Calculator shows exactly which assets you could liquidate for a major purchase. Per-source tax rate inputs let you estimate net vs gross income across different tax treatments.</div></div>
+      </div>
+      <div class="retire-panel" id="ret-panel">
+        <div class="panel-label">Sample Projection — Year 1</div>
+        <div class="panel-title">Retirement income breakdown</div>
+        <div class="panel-body">Based on: Age 62 · $500K portfolio · CPP + OAS + RRSP withdrawals · 3% inflation · 25-year projection.</div>
+        <div class="income-bar-row"><div class="income-label">CPP / OAS</div><div class="income-track"><div class="income-fill fill-gld" style="width:35%"></div></div><div class="income-amt" style="color:var(--gold)">$24,500</div></div>
+        <div class="income-bar-row"><div class="income-label">RRSP W/D</div><div class="income-track"><div class="income-fill fill-acc" style="width:50%"></div></div><div class="income-amt" style="color:var(--accent2)">$35,000</div></div>
+        <div class="income-bar-row"><div class="income-label">Dividends</div><div class="income-track"><div class="income-fill fill-grn" style="width:20%"></div></div><div class="income-amt" style="color:var(--green)">$14,200</div></div>
+        <div class="income-bar-row"><div class="income-label">Divest</div><div class="income-track"><div class="income-fill fill-pur" style="width:14%"></div></div><div class="income-amt" style="color:var(--purple)">$9,800</div></div>
+        <div class="data-row" style="margin-top:16px"><span class="data-key">Total Year 1 Income</span><span class="data-val pos">$83,500</span></div>
+        <div class="data-row"><span class="data-key">Year 25 Portfolio</span><span class="data-val acc">$1.2M</span></div>
+      </div>
+    </div>
+    <div class="video-embed">
+      <iframe src="https://www.youtube.com/embed/ofmjMHz6YA0" title="Retirement Planner — Full Feature Overview | North Prosperity" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <div class="section-eyebrow">About North Prosperity</div>
+        <h2 class="section-h2" style="margin-bottom:28px">Built by an investor.<br>For investors.</h2>
+        <p class="about-body">North Prosperity was built out of a simple frustration: <strong>every investment decision felt like guesswork.</strong> When should I buy more? How much? Am I buying at the top? Is now a good time to trim?</p>
+        <p class="about-body">The answer wasn't gut feel or financial media noise. It was a <strong>systematic, data-driven framework</strong> — one that measures where an asset is relative to its own history, and acts accordingly.</p>
+        <p class="about-body">These two platforms are the result of that work. They don't predict the future. They remove emotion from the equation and replace it with <strong>discipline, process, and precision.</strong></p>
+        <p class="about-body"><em style="color:var(--gold);font-style:italic;">"Navigating the financial world without a map — you're certain to lose your way."</em></p>
+        <p class="about-body" style="margin-bottom:0">No account. No tracking. No ads. <strong>Your data stays on your device.</strong></p>
+      </div>
+      <div class="about-stats">
+        <div class="about-stat"><div class="about-stat-num">500</div><div class="about-stat-label">Day geometric MA window — calibrated for bear markets</div></div>
+        <div class="about-stat"><div class="about-stat-num">30yr+</div><div class="about-stat-label">Unlimited retirement projection horizon — no hard cap</div></div>
+        <div class="about-stat"><div class="about-stat-num">8</div><div class="about-stat-label">Currencies supported — USD, CAD, GBP, EUR, AUD, CHF, JPY, HKD</div></div>
+        <div class="about-stat"><div class="about-stat-num">0</div><div class="about-stat-label">Data stored on our servers — fully private</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="padding:60px 0;background:var(--bg);border-top:1px solid var(--border);">
+  <div class="container">
+    <div style="max-width:600px;margin:0 auto;text-align:center;">
+      <div class="section-eyebrow" style="justify-content:center;">Get In Touch</div>
+      <h2 style="font-family:var(--font-h);font-size:28px;font-weight:700;color:var(--text);margin-bottom:16px;">Contact North Prosperity</h2>
+      <p style="font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:28px;">Have a question about the platforms, need help getting started, or want to share feedback? We'd love to hear from you.</p>
+      <a href="mailto:support@northprosperity.com" style="display:inline-block;font-family:var(--font-m);font-size:14px;color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold);padding-bottom:4px;margin-bottom:32px;">support@northprosperity.com</a>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:16px;">
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px 20px;text-align:center;"><div style="font-size:28px;margin-bottom:12px;">💬</div><div style="font-family:var(--font-h);font-size:16px;font-weight:700;color:var(--text);margin-bottom:8px;">General Enquiries</div><div style="font-size:13px;color:var(--text2);line-height:1.6;">Questions about the platforms or features.</div></div>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px 20px;text-align:center;"><div style="font-size:28px;margin-bottom:12px;">🔧</div><div style="font-family:var(--font-h);font-size:16px;font-weight:700;color:var(--text);margin-bottom:8px;">Technical Support</div><div style="font-size:13px;color:var(--text2);line-height:1.6;">Having trouble with the platform? We'll get it sorted.</div></div>
+        <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px 20px;text-align:center;"><div style="font-size:28px;margin-bottom:12px;">📝</div><div style="font-family:var(--font-h);font-size:16px;font-weight:700;color:var(--text);margin-bottom:8px;">Feedback</div><div style="font-size:13px;color:var(--text2);line-height:1.6;">Tell us what's working and what could be better.</div></div>
+      </div>
+      <p style="font-family:var(--font-m);font-size:12px;color:var(--text3);margin-top:40px;">We aim to respond to all enquiries within 24 hours.</p>
+    </div>
+  </div>
+</section>
+
+<section id="privacy" style="padding:60px 0;background:var(--bg);border-top:1px solid var(--border);">
+  <div class="container">
+    <div style="max-width:720px;margin:0 auto;">
+      <div class="section-eyebrow">Legal</div>
+      <h2 style="font-family:var(--font-h);font-size:28px;font-weight:700;color:var(--text);margin-bottom:28px;">Privacy Policy & Terms of Use</h2>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;margin-bottom:24px;">
+        <h3 style="font-family:var(--font-h);font-size:18px;font-weight:700;color:var(--gold);margin-bottom:12px;">Privacy Policy</h3>
+        <p style="font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:14px;"><strong style="color:var(--text);">Your data never leaves your device.</strong> Both North Prosperity platforms operate entirely within your browser. No personal data, portfolio information, or financial data is transmitted to or stored on North Prosperity servers.</p>
+        <p style="font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:14px;">The only data we collect is standard website analytics through Google Analytics — no personally identifiable information is collected or stored.</p>
+        <p style="font-size:14px;color:var(--text2);line-height:1.7;">We do not sell, share, or rent your personal information to any third parties.</p>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:48px;">
+        <h3 style="font-family:var(--font-h);font-size:18px;font-weight:700;color:var(--gold);margin-bottom:12px;">Terms of Use</h3>
+        <p style="font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:14px;">By using the North Prosperity platforms you agree to the following terms:</p>
+        <p style="font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:14px;"><strong style="color:var(--text);">Educational use only.</strong> The platforms are provided for educational and simulation purposes only. They do not constitute financial advice. Past performance does not guarantee future results.</p>
+        <p style="font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:14px;"><strong style="color:var(--text);">Personal licence.</strong> Your access grants you a personal, non-transferable licence to use the platforms. You may not resell, redistribute, or share access with others.</p>
+        <p style="font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:14px;"><strong style="color:var(--text);">No warranty.</strong> The platforms are provided "as is" without warranty of any kind. North Prosperity is not liable for any investment decisions made based on the use of the platforms.</p>
+        <p style="font-size:14px;color:var(--text2);line-height:1.7;">These terms are governed by the laws of British Columbia, Canada.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand-name">North Prosperity</div>
+      <p class="footer-brand-desc">Professional investment simulation and retirement planning tools for disciplined, data-driven investors.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Platforms</div>
+      <ul class="footer-links">
+        <li><a href="#dca">Reversion Alpha</a></li>
+        <li><a href="#retire">Retirement Planner</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Legal</div>
+      <ul class="footer-links">
+        <li><a href="#privacy">Privacy Policy</a></li>
+        <li><a href="#privacy">Terms of Use</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-legal">© 2026 North Prosperity. All rights reserved.</div>
+    <div class="footer-legal">Not financial advice · For educational and simulation purposes only · <a href="mailto:support@northprosperity.com" style="color:var(--text3);text-decoration:none;">support@northprosperity.com</a></div>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('load',function(){window.scrollTo(0,0);history.scrollRestoration='manual';});
+const featureContent={
+  risk:{label:'Risk Score Model',title:'Where is the asset relative to its trend?',body:'The 500-day geometric MA stays elevated through bear markets, correctly identifying historic buying opportunities like Bitcoin at $16,000 in November 2022 (risk score: 0.197).',rows:[['Nov 2022 BTC','0.197 — Extreme Buy ✓','pos'],['Jun 2022 BTC','0.155 — Deep Buy ✓','pos'],['Apr 2023 BTC','0.532 — Above Band','acc'],['Current SPY','0.34 — Accumulate','acc']]},
+  precision:{label:'Precision DCA',title:'How much to buy at each risk level',body:'Linear strategy scales from 1x to 5x as risk drops. Exponential doubles each tier: 1x, 2x, 4x, 8x, 16x. Both concentrate buying exactly where it matters most.',rows:[['0.4–0.5 (band)','1x — $1,000','acc'],['0.3–0.4','2x — $2,000','acc'],['0.2–0.3','3x — $3,000','pos'],['0.0–0.1','5x — $5,000 ⚡','pos']]},
+  advanced:{label:'Advanced Strategies',title:'Tools for experienced investors',body:'Direction-aware Take Profit engine exits on confirmed mean reversion. LEAP options at extreme dips for leveraged upside. Covered calls generate income near market peaks.',rows:[['Take Profit','Descending trigger after 0.90+','acc'],['LEAP leverage','~2.5x at 40% premium','pos'],['CC income','0.40%/mo on position','pos'],['Strategy','All stackable together','acc']]},
+  tracker:{label:'Portfolio Tracker',title:'All your holdings in one view',body:'Enter your real holdings. Live prices and risk scores load automatically. Buy/Hold/Reduce signals tell you where each position stands — right now.',rows:[['Live prices','Binance + Yahoo Finance','acc'],['Risk signals','Real-time per ticker','pos'],['CAGR analysis','1yr, 3yr, 5yr, 10yr','acc'],['Planned tab','Model target allocation','pos']]}
+};
+function setFeature(key,el){
+  document.querySelectorAll('.feat-tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  const c=featureContent[key];
+  document.getElementById('feat-panel').innerHTML=`<div class="panel-label">${c.label}</div><div class="panel-title">${c.title}</div><div class="panel-body">${c.body}</div>${c.rows.map(r=>`<div class="data-row"><span class="data-key">${r[0]}</span><span class="data-val ${r[2]}">${r[1]}</span></div>`).join('')}`;
+}
+const retireContent={
+  income:{label:'Sample Projection — Year 1',title:'Retirement income breakdown',body:'Based on: Age 62 · $500K portfolio · CPP + OAS + RRSP withdrawals · 3% inflation · 25-year projection.',bars:[{label:'CPP / OAS',pct:35,cls:'fill-gld',color:'var(--gold)',amt:'$24,500'},{label:'RRSP W/D',pct:50,cls:'fill-acc',color:'var(--accent2)',amt:'$35,000'},{label:'Dividends',pct:20,cls:'fill-grn',color:'var(--green)',amt:'$14,200'},{label:'Divest',pct:14,cls:'fill-pur',color:'var(--purple)',amt:'$9,800'}],rows:[['Total Year 1 Income','$83,500','pos'],['Year 25 Portfolio','$1.2M','acc']]},
+  divest:{label:'Assets to Divest',title:'Sell shares, not plans',body:'Enter stocks or ETFs you plan to liquidate through retirement. The amortization engine calculates exactly how many shares to sell each year.',bars:[{label:'NVDA',pct:60,cls:'fill-acc',color:'var(--accent2)',amt:'500 shrs'},{label:'AAPL',pct:40,cls:'fill-grn',color:'var(--green)',amt:'320 shrs'},{label:'Cash',pct:25,cls:'fill-gld',color:'var(--gold)',amt:'$125,000'}],rows:[['Total divest portfolio','$487,000','pos'],['Annual withdrawal','$19,480','acc']]},
+  project:{label:'Year-by-Year Projections',title:'Your full retirement timeline',body:'Every year of your projection in one scrollable table — total income, portfolio value, and income by source.',bars:[{label:'Yr 1',pct:55,cls:'fill-grn',color:'var(--green)',amt:'$83,500'},{label:'Yr 10',pct:65,cls:'fill-acc',color:'var(--accent2)',amt:'$98,200'},{label:'Yr 20',pct:45,cls:'fill-gld',color:'var(--gold)',amt:'$71,400'}],rows:[['Portfolio Year 1','$512,000','pos'],['Portfolio Year 25','$1.2M','acc']]},
+  tools:{label:'Additional Tools',title:'Plan the big decisions',body:'Big Ticket Calculator shows which assets to sell for a major purchase. Per-source tax inputs let you model net vs gross income across income, capital gains, and tax-exempt sources.',bars:[{label:'Boat',pct:30,cls:'fill-acc',color:'var(--accent2)',amt:'$150,000'},{label:'Reno',pct:20,cls:'fill-gld',color:'var(--gold)',amt:'$80,000'},{label:'Available',pct:50,cls:'fill-grn',color:'var(--green)',amt:'$487,000'}],rows:[['Assets available','$487,000','pos'],['Impact on Year 25','−$340K','acc']]}
+};
+function setRetire(key,el){
+  document.querySelectorAll('.ret-tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  const c=retireContent[key];
+  document.getElementById('ret-panel').innerHTML=`<div class="panel-label">${c.label}</div><div class="panel-title">${c.title}</div><div class="panel-body">${c.body}</div>${c.bars.map(b=>`<div class="income-bar-row"><div class="income-label">${b.label}</div><div class="income-track"><div class="income-fill ${b.cls}" style="width:${b.pct}%"></div></div><div class="income-amt" style="color:${b.color}">${b.amt}</div></div>`).join('')}<div style="margin-top:16px">${c.rows.map(r=>`<div class="data-row"><span class="data-key">${r[0]}</span><span class="data-val ${r[2]}">${r[1]}</span></div>`).join('')}</div>`;
+}
+const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';}});},{threshold:0.1});
+document.querySelectorAll('.product-card,.step,.about-stat').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(24px)';el.style.transition='opacity 0.6s ease,transform 0.6s ease';observer.observe(el);});
+function acceptDisclaimer(){document.getElementById('disclaimerBanner').style.display='none';localStorage.setItem('np_disclaimer_accepted',(Date.now()+(30*24*60*60*1000)).toString());}
+const de=localStorage.getItem('np_disclaimer_accepted');
+if(de&&Date.now()<parseInt(de)){const b=document.getElementById('disclaimerBanner');if(b)b.style.display='none';}else{localStorage.removeItem('np_disclaimer_accepted');}
+</script>
+</body>
+</html>
